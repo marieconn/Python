@@ -81,10 +81,9 @@ def register_customer():
         val_u = (username, )
         cursor.execute(username_duplicate_SQL, val_u)
         dupes = cursor.fetchone()
-        #print(dupes)
-        #print("There is {} in database".format(dupes))
+        
         if dupes == None:
-            #print("Dodacu u bazu {}".format(username))
+            
             registration_succ_SQL = ("INSERT INTO customers(name, lastname, email, password, username) VALUES (%s, %s, %s, %s, %s)")
             val_reg = (name, lastname, email, password, username, )
             cursor.execute(registration_succ_SQL, val_reg)
@@ -105,7 +104,7 @@ def login_customer():
         val_d = (username, password, )
         cursor.execute(check_data_SQL, val_d)
         data = cursor.fetchone()
-        #print("User with data {}".format(data))
+        
         if data == None:
             print("User with this information does not exist.")
             continue

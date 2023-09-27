@@ -14,8 +14,7 @@ def graph():
     for b in bi:
         title.append(b[0])
         id_count.append(b[1])
-        #print(b[0])
-        #print(b[1])
+       
     print("Title = ", title)
     print("Book id = ", id_count)
 
@@ -23,7 +22,6 @@ def graph():
     plt.xlim(0, 5)
     plt.ylabel("Title")
     plt.xlabel("Sold books")
-    #plt.xticks(rotation=90)
     plt.grid()
     plt.show()
 

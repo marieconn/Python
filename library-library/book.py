@@ -5,7 +5,7 @@ from datetime import date
 
 def borrow_books():
     print("-----BORROW BOOK-----")
-    #username= input("Enter your username: ")
+    
     username = check_username()
     no = False 
     while(not no):
@@ -42,9 +42,9 @@ def borrow_books():
                         val_borrow_n = (x, y, )
                         cursor.execute(sql_borrow_n, val_borrow_n)
                         m = cursor.fetchone()
-                            #print(m)
+                            
                         if m == None:
-                                #print("Ok, ne postoji duplikat")
+                                
                             stat = 'borrowed'
                             book_status_SQL = ("INSERT INTO book_status(book_id, customer_id, borrow_date, quantity, status) VALUES (%s, %s, %s, %s, %s)")
                             val_bs = (x, y, formatted, quantity, stat)
@@ -71,7 +71,7 @@ def check_book_existence_id():
         val_b = (book_title, book_author, )
         cursor.execute(find_book_SQL, val_b)
         book_id = cursor.fetchone()
-        #print("Book id with title {} and author {} is {}".format(book_title, book_author, book_id))
+        
         if book_id == None:
             print("There is no book with title {} and author {}, try again.".format(book_title, book_author))
         else:
@@ -87,7 +87,7 @@ def check_book_existence():
         val_b = (book_title, book_author, )
         cursor.execute(find_book_SQL, val_b)
         book_id = cursor.fetchone()
-        #print("Book id with title {} and author {} is {}".format(book_title, book_author, book_id))
+        
         if book_id == None:
             print("There is no book with title {} and author {}, try again.".format(book_title, book_author))
         else:
@@ -149,7 +149,7 @@ def find_book(book_title, book_author):
     val_b = (book_title, book_author, )
     cursor.execute(find_book_SQL, val_b)
     book_id = cursor.fetchone()
-    #print("Book id with title {} and author {} is {}".format(book_title, book_author, book_id))
+    
     for b in book_id:
         book_id = b
     return book_id
@@ -164,7 +164,7 @@ def return_book():
     c_id = cursor.fetchone()
     for c in c_id:
         customer_id = c
-        #print(customer_id)
+        
    
     no = False
     while not no:
@@ -196,12 +196,12 @@ def decrease_quantity_in_stock(x, quantity, quantity_in_stock):
     for q in quantity_in_stock:
         print(q)
         q -= quantity
-        #print("Smanjen quantity: ", q)
+        
         update_quantity_stock_SQL = ("UPDATE books SET quantity_in_stock = %s WHERE book_id = %s")
         val_u = (q, x, )
         cursor.execute(update_quantity_stock_SQL, val_u)
         db.commit()
-        #print("Updated quantity in stock to {} for book with {} id".format(q, x))
+        
 
 def increase_quantity_in_stock(quantity, book_id):
     increase_quantity_in_stock_SQL = ("SELECT b.quantity_in_stock FROM books b where b.book_id = %s")
@@ -211,12 +211,12 @@ def increase_quantity_in_stock(quantity, book_id):
     for q in quan:
         print(q)
         q += quantity
-        #print("Increased quantity: ", q)
+        
         update_quantity_stock_SQL = ("UPDATE books SET quantity_in_stock = %s WHERE book_id = %s")
         val_u = (q, book_id, )
         cursor.execute(update_quantity_stock_SQL, val_u)
         db.commit()
-        #print("Updated quantity in stock to {} for book with {} id".format(q, book_id))
+        
 
 
 
